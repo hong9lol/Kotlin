@@ -1,25 +1,19 @@
 val join = fun(): RESULT {
-    println("Join a new client")
+    println("* Join a Client *")
     val c = clientDataInput() ?: return RESULT.FAIL
-    Client(c[0] as String, c[1] as Int, c[2] as Int)
-    return RESULT.SUCCESS
+    return joinClient(c)
 }
 
 val del = fun(): RESULT {
-    println("Delete a client")
+    println("* Delete a Client *")
     val c = clientDataInput() ?: return RESULT.FAIL
-    return delClient(Client(c[0] as String, c[1] as Int, c[2] as Int))
+    return delClient(c)
 }
 
 val mod = fun(): RESULT {
-    println("Modify a client information")
-    val oriClient = clientDataInput().let{
-        Client(it?.get(0) as String, it[1] as Int, it[2] as Int) // hm...
-    }
-    val dstClient = clientDataInput().let{
-        Client(it?.get(0) as String, it[1] as Int, it[2] as Int) // hm...
-    }
-
+    println("* Modify a Client Information *")
+    val oriClient = clientDataInput() ?: return RESULT.FAIL
+    val dstClient = clientDataInput() ?: return RESULT.FAIL
     return modClient(oriClient, dstClient)
 }
 
@@ -75,13 +69,13 @@ enum class OPERATOR(val idx: Int, val func: () -> RESULT) {
 fun startManageSystem() {
     while(true) {
         val oper = operatorInput()
-        println(oper)
         when (oper) {
             OPERATOR.JOIN.idx ->  doOperate(Operator.Join)
             OPERATOR.DEL.idx ->  doOperate(Operator.Del)
             OPERATOR.MOD.idx ->  doOperate(Operator.Mod)
             OPERATOR.SHOW.idx ->  doOperate(Operator.Show)
         }
+        showAllClients()
     }
 }
 
