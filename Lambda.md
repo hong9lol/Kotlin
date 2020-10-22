@@ -136,4 +136,5 @@ fab.setOnClickListener { /* Something */ }
  - apply는 생성 및 세팅 할 때 사용하기 좋습니다. (e.g. TextView)
  
  https://thdev.tech/kotlin/2017/10/02/Kotlin-Higher-Order-Function/
+ 
  https://thdev.tech/kotlin/androiddev/2017/10/07/Kotlin-SAM/
